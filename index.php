@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 session_start();
 require __DIR__ . '/classes/GuestBook.php';
@@ -42,3 +43,14 @@ foreach ($guest->getData() as $item) {
 
 </body>
 </html>
+=======
+<?php
+session_start();
+
+require_once __DIR__ . '/classes/GuestBook.php';
+
+
+$guestBook = new GuestBook();
+
+include __DIR__ . '/templates/index.php';
+>>>>>>> develop
