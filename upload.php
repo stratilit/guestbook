@@ -1,18 +1,22 @@
 <?php
-include __DIR__ . '/functions.php';
-$path = __DIR__.'/data.txt';
+session_start();
+require __DIR__ . '/classes/GuestBook.php';
 
-$name = $_POST['user'] ?? 'Anonim';
-$comment1 = str_replace(array("\r", "\n"), " ", $_POST['comment']) ?? null;
 
-$data = readOfDataGust($path);
-$data[] =  $name.': '.$comment1;
-$line = implode(PHP_EOL,$data);
+// Добавление записей гостевой книги
+$path = __DIR__ . '/data.txt';
+$guest = new GuestBook($path);
+$name = $_POST['user'] ?? null;
 
-file_put_contents($path, $line);
+if (null != $name) {
+    $guest->append($name . ': ' . $_POST['comment']);
+    $guest->save();
 
-echo  '<br>';
+}
 
-header('Location: index.php');
+header('Location: /');
 exit();
+
+
+
 
