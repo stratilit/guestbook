@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require_once __DIR__ . '/classes/GuestBook.php';
 require_once __DIR__ . '/classes/View.php';
 
@@ -11,8 +10,9 @@ $view = new View();
 
 
 $view->assign('guestBook', $guestBook);
-//$view->assign('user', $user);
-//$view->assign('news', $news->getLast(10));
+$view->assign('title', 'Гостевая книга');
+
 
 
 $view->display(__DIR__ . '/templates/index.php');
+

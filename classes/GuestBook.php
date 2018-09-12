@@ -1,7 +1,9 @@
 <?php
 require_once __DIR__ . '/GuestBookRecord.php';
 
-
+/**
+ * Class GuestBook модель гостевой книги
+ */
 class GuestBook
 {
 
@@ -18,19 +20,34 @@ class GuestBook
         }
     }
 
-
+    /**
+     * Возвращает массив объектов записей гостевой книги из модели
+     * @return array
+     */
     public function getRecords()
     {
         return $this->data;
     }
 
-    public function append($record)
+
+    /**
+     * Добавляет в модель объект записи
+     * @param GuestBookRecord $record з
+     * апись для добавления в модель
+     * @return $this GuestBook
+     * объект модель гостевой книги
+     */
+    public function append(GuestBookRecord $record)
     {
         $this->data[] = $record;
         return $this;
     }
 
-
+    /**
+     * Сохраняет модель гостеой книгу в хранилище
+     * @return $this GuestBook
+     * объект модель гостевой книги
+     */
     public function save()
     {
         $lines = [];
@@ -38,6 +55,7 @@ class GuestBook
             $lines[] = $record->getMessage();
         }
         file_put_contents($this->path, implode("\n", $lines));
+        return $this;
     }
 
 
